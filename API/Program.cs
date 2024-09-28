@@ -19,7 +19,7 @@ builder.Services.AddDbContext<DbContext, AppDbContext>(options =>
 });
 
 builder.Services.AddScoped<IMovieLogic, MovieLogic>();
-builder.Services.AddScoped<IEntityAccess, EntityAccess>();
+builder.Services.AddScoped<IEntityFactory, EntityFactory>();
 
 var app = builder.Build();
 

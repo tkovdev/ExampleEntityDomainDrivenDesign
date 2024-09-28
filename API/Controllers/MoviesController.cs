@@ -2,6 +2,7 @@ using Data.Access;
 using Domain.Access;
 using Domain.Access.Interfaces;
 using Domain.Entities.Movie;
+using Logic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -10,17 +11,20 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class MoviesController : ControllerBase
 {
-    private readonly IEntityAccess _entityAccess;
+    private readonly IEntityFactory _entityFactory;
+    private readonly IMovieLogic _movieLogic;
 
-    public MoviesController(IEntityAccess entityAccess)
+    public MoviesController(IEntityFactory entityFactory, IMovieLogic movieLogic)
     {
-        _entityAccess = entityAccess;
+        _entityFactory = entityFactory;
+        _movieLogic = movieLogic;
     }
 
     [HttpGet]
     public IActionResult Get()
     {
-        var res = _entityAccess.Get<MovieList>();
+        var instance = _entityFactory.Instantiate<MovieList>();
+        var res = instance.Get();
         return StatusCode(StatusCodes.Status200OK, res);
     }
     
@@ -29,12 +33,14 @@ public class MoviesController : ControllerBase
     {
         if (details)
         {
-            var res = _entityAccess.Get<Movie>(id);
+            var instance = _entityFactory.Instantiate<Movie>();
+            var res = instance.Get(id);
             return StatusCode(StatusCodes.Status200OK, res);    
         }
         else
         {
-            var res = _entityAccess.Get<MovieList>(id);
+            var instance = _entityFactory.Instantiate<MovieList>();
+            var res = instance.Get(id);
             return StatusCode(StatusCodes.Status200OK, res);
         }
     }
@@ -42,7 +48,8 @@ public class MoviesController : ControllerBase
     [HttpGet("{id}/showings")]
     public IActionResult Get(int id)
     {
-        var res = _entityAccess.GetAll<MovieShowing>(id);
+        var instance = _entityFactory.Instantiate<MovieShowing>();
+        var res = instance.GetAll(id);
         return StatusCode(StatusCodes.Status200OK, res);
     }
     
@@ -56,8 +63,8 @@ public class MoviesController : ControllerBase
     [HttpPost("purchaseTicket")]
     public IActionResult PurchaseTicket([FromBody] MovieTicket ticket)
     {
-        // var res = _movieLogic.PurchaseTicket(ticket.TheaterId, ticket.MovieId, ticket.ShowingTime);
-        return StatusCode(StatusCodes.Status200OK, null);
+        var res = _movieLogic.PurchaseTicket(ticket.TheaterId, ticket.MovieId, ticket.ShowingTime);
+        return StatusCode(StatusCodes.Status200OK, res);
     }
     
     [HttpGet("checkTicket/{ticketId}")]
