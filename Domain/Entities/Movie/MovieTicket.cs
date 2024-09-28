@@ -25,11 +25,6 @@ public class MovieTicket : AbstractEntity<MovieTicket>
     public MovieTicket() : base(){}
     public MovieTicket(AppDbContext ctx) : base(ctx){}
 
-    public override IList<MovieTicket> Get()
-    {
-        throw new NotImplementedException();
-    }
-
     public override MovieTicket Get(int ticketId)
     {
         var ticket = Ctx.Tickets

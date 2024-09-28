@@ -18,8 +18,9 @@ public abstract class AbstractEntity<T> : IEntity<T>
         Ctx = ctx;
     }
     
-    public abstract IList<T> Get();
-    public abstract T Get(int id);
-    public abstract T Create();
-    public abstract T Update();
+    public virtual IList<T> GetAll(int id) => throw new NotImplementedException();
+    public virtual IList<T> Get() => throw new NotImplementedException();
+    public virtual T Get(int id) => throw new NotImplementedException();
+    public virtual T Create() => throw new NotImplementedException();
+    public virtual T Update() => throw new NotImplementedException();
 }

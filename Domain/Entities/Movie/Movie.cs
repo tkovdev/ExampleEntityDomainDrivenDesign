@@ -73,9 +73,4 @@ public class Movie : AbstractEntity<Movie>
 
         return this;
     }
-
-    public override Movie Update()
-    {
-        throw new NotImplementedException();
-    }
 }

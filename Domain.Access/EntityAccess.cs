@@ -12,6 +12,12 @@ public class EntityAccess : IEntityAccess
         _ctx = ctx;
     }
 
+    public IList<T> GetAll<T>(int id) where T : IEntity<T>
+    {
+        var instance = Instantiate<T>();
+        return instance.GetAll(id);
+    }
+    
     public IList<T> Get<T>() where T : IEntity<T>
     {
         var instance = Instantiate<T>();

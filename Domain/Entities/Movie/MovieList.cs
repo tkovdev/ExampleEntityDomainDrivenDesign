@@ -22,18 +22,15 @@ public class MovieList : AbstractEntity<MovieList>
         }).ToList();
     }
 
-    public override MovieList Create()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override MovieList Update()
-    {
-        throw new NotImplementedException();
-    }
-
     public override MovieList Get(int id)
     {
-        throw new NotImplementedException();
+        var movieList = Ctx.Movies.Select(x => new MovieList(Ctx)
+        {
+            Id   = x.Id,
+            Name = x.Title
+        }).FirstOrDefault();
+        
+        if (movieList is null) throw new WarningException("Movie does not exist");
+        return movieList;
     }
 }

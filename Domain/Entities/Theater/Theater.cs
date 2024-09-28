@@ -32,14 +32,4 @@ public class Theater : AbstractEntity<Theater>
         if (theater is null) throw new WarningException("Theater does not exist");
         return theater;
     }
-
-    public override Theater Create()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override Theater Update()
-    {
-        throw new NotImplementedException();
-    }
 }
