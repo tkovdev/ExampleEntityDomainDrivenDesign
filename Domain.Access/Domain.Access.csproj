@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Data.Access\Data.Access.csproj" />
+      <ProjectReference Include="..\Exception\Exception.csproj" />
     </ItemGroup>
 
 </Project>

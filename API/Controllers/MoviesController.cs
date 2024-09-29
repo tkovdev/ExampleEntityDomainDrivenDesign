@@ -56,8 +56,9 @@ public class MoviesController : ControllerBase
     [HttpPost()]
     public IActionResult Create([FromBody] Movie movie)
     {
-        // var res = _movieLogic.CreateMovie(movie);
-        return StatusCode(StatusCodes.Status200OK, null);
+        var instance = _entityFactory.Instantiate(movie);
+        var res = instance.Create();
+        return StatusCode(StatusCodes.Status200OK, res);
     }
     
     [HttpPost("purchaseTicket")]

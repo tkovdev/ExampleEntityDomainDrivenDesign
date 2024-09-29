@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace Domain.Access.Interfaces;
 
 public interface IEntity<T>
@@ -7,4 +9,5 @@ public interface IEntity<T>
     public IList<T> GetAll(int id);
     public T Create();
     public T Update();
+    public void AddCtx(DbContext ctx);
 }
