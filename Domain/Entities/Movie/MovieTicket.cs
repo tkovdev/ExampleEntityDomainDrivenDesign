@@ -68,9 +68,8 @@ public class MovieTicket : AbstractEntity<MovieTicket>
         Ctx.SaveChanges();
 
         if (create.Id == 0) throw new CriticalException("Ticket not created!");
-        TicketId = create.Id;
         
-        return this;
+        return Get(create.Id);
     }
 
     public override MovieTicket Update()

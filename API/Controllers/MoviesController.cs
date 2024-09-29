@@ -70,7 +70,7 @@ public class MoviesController : ControllerBase
     [HttpGet("checkTicket/{ticketId}")]
     public IActionResult PurchaseTicket([FromRoute] int ticketId)
     {
-        // var res = _movieLogic.CheckTicket(ticketId);
-        return StatusCode(StatusCodes.Status200OK, null);
+        var res = _movieLogic.CheckTicket(ticketId);
+        return StatusCode(StatusCodes.Status200OK, res);
     }
 }
