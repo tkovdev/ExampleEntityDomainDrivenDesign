@@ -21,7 +21,7 @@ public class MoviesController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult Get()
+    public IActionResult GetMovieList()
     {
         var instance = _entityFactory.Instantiate<MovieList>();
         var res = instance.Get();
@@ -29,7 +29,7 @@ public class MoviesController : ControllerBase
     }
     
     [HttpGet("{id}")]
-    public IActionResult Get([FromRoute] int id, [FromQuery] bool details = false)
+    public IActionResult GetMovieById([FromRoute] int id, [FromQuery] bool details = false)
     {
         if (details)
         {
@@ -46,7 +46,7 @@ public class MoviesController : ControllerBase
     }
     
     [HttpGet("{id}/showings")]
-    public IActionResult Get(int id)
+    public IActionResult GetShowingsByMovieId(int id)
     {
         var instance = _entityFactory.Instantiate<MovieShowing>();
         var res = instance.GetAll(id);
@@ -54,7 +54,7 @@ public class MoviesController : ControllerBase
     }
     
     [HttpPost()]
-    public IActionResult Create([FromBody] Movie movie)
+    public IActionResult CreateMovie([FromBody] Movie movie)
     {
         var instance = _entityFactory.Instantiate(movie);
         var res = instance.Create();
@@ -69,7 +69,7 @@ public class MoviesController : ControllerBase
     }
     
     [HttpGet("checkTicket/{ticketId}")]
-    public IActionResult PurchaseTicket([FromRoute] int ticketId)
+    public IActionResult CheckTicket([FromRoute] int ticketId)
     {
         var res = _movieLogic.CheckTicket(ticketId);
         return StatusCode(StatusCodes.Status200OK, res);
