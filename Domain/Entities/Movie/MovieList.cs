@@ -21,13 +21,13 @@ public class MovieList : AbstractEntity<MovieList>
         }).ToList();
     }
 
-    public override MovieList Get(int id)
+    public override MovieList Get(int movieId)
     {
         var movieList = Ctx.Movies.Select(x => new MovieList(Ctx)
         {
             Id   = x.Id,
             Name = x.Title
-        }).FirstOrDefault();
+        }).FirstOrDefault(x => x.Id == movieId);
         
         if (movieList is null) throw new WarningException("Movie does not exist");
         return movieList;
