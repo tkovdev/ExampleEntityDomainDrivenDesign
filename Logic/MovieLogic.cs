@@ -36,7 +36,9 @@ public class MovieLogic : IMovieLogic
         ticket.TheaterId = theaterId;
         ticket.ShowingTime = showingTime;
         ticket.PurchasedDate = DateTime.Now;
-        
+        ticket.Price = 12;
+        if (ticket.Discount == "SENIOR" || ticket.Discount == "CHILD") ticket.Price = (UInt16)(ticket.Price * .8);
+
         return ticket.Create();
     }
 

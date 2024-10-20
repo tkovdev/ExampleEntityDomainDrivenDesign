@@ -53,9 +53,6 @@ public class MovieTicket : AbstractEntity<MovieTicket>
             .Include(x => x.Movie)
             .FirstOrDefault(x => x.TheaterId == TheaterId && x.MovieId == MovieId && x.StartTime == ShowingTime);
         if (showing is null) throw new CriticalException("Showing does not exist for given movie, theater &/or time");
-
-        Price = 12;
-        if (Discount == "SENIOR" || Discount == "CHILD") Price = (UInt16)(Price * .8);
         
         var create = new Ticket()
         {
