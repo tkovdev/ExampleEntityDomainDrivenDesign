@@ -22,7 +22,6 @@ public class MovieTicket : AbstractEntity<MovieTicket>
     public string Discount { get; set; } = String.Empty;
 
     
-    public MovieTicket() : base(){}
     public MovieTicket(AppDbContext ctx) : base(ctx){}
 
     public override MovieTicket Get(int ticketId)

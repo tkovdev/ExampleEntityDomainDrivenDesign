@@ -14,10 +14,6 @@ public class Movie : AbstractEntity<Movie>
     public UInt16 RunTime { get; set; }
     public int DirectorId { get; set; }
 
-    public Movie() : base()
-    {
-    }
-
     public Movie(AppDbContext ctx) : base(ctx)
     {
     }

@@ -11,7 +11,6 @@ public class TheaterTicket : AbstractEntity<TheaterTicket>
     public int MovieId { get; set; }
     public DateTime ShowingTime { get; set; }
     
-    public TheaterTicket() : base(){}
     public TheaterTicket(AppDbContext ctx) : base(ctx) {}
     
     public override IList<TheaterTicket> GetAll(int id)

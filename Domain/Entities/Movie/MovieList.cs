@@ -10,7 +10,6 @@ public class MovieList : AbstractEntity<MovieList>
     public int Id { get; set; }
     public string Name { get; set; }
 
-    public MovieList() : base(){}
     public MovieList(AppDbContext ctx) : base(ctx){}
     
     public override List<MovieList> Get()

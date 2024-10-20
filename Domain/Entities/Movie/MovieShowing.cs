@@ -15,7 +15,6 @@ public class MovieShowing : AbstractEntity<MovieShowing>
     public DateTime EndTime { get; set; }
     public int AvailableSeats { get; set; }
     
-    public MovieShowing(): base(){}
     public MovieShowing(AppDbContext ctx) : base(ctx){}
 
     public override IList<MovieShowing> GetAll(int id)
