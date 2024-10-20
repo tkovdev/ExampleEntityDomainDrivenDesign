@@ -36,4 +36,4 @@ Developers should not be forced to depend upon interfaces that they do not use.
 Concrete implementations should depend on abstractions.
 
 ## Class Diagram
-![alt text](https://github.com/tkovdev/ExampleEntityDomainDrivenDesign/blob/main/Class-Diagram.png?raw=true)
+![alt text](https://github.com/tkovdev/ExampleEntityDomainDrivenDesign/blob/main/Class-Diagram.jpg?raw=true)
