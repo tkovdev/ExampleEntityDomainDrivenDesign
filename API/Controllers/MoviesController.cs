@@ -1,6 +1,3 @@
-using Data.Access;
-using Domain.Access;
-using Domain.Access.Interfaces;
 using Domain.Entities.Movie;
 using Logic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,20 +8,19 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class MoviesController : ControllerBase
 {
-    private readonly IEntityFactory _entityFactory;
+    private readonly ICrudLogic _crudLogic;
     private readonly IMovieLogic _movieLogic;
 
-    public MoviesController(IEntityFactory entityFactory, IMovieLogic movieLogic)
+    public MoviesController(ICrudLogic crudLogic, IMovieLogic movieLogic)
     {
-        _entityFactory = entityFactory;
+        _crudLogic = crudLogic;
         _movieLogic = movieLogic;
     }
 
     [HttpGet]
     public IActionResult GetMovieList()
     {
-        var instance = _entityFactory.Instantiate<MovieList>();
-        var res = instance.Get();
+        var res = _crudLogic.Get<MovieList>();
         return StatusCode(StatusCodes.Status200OK, res);
     }
     
@@ -33,14 +29,12 @@ public class MoviesController : ControllerBase
     {
         if (details)
         {
-            var instance = _entityFactory.Instantiate<Movie>();
-            var res = instance.Get(id);
+            var res = _crudLogic.Get<Movie>(id);
             return StatusCode(StatusCodes.Status200OK, res);    
         }
         else
         {
-            var instance = _entityFactory.Instantiate<MovieList>();
-            var res = instance.Get(id);
+            var res = _crudLogic.Get<MovieList>(id);
             return StatusCode(StatusCodes.Status200OK, res);
         }
     }
@@ -48,16 +42,14 @@ public class MoviesController : ControllerBase
     [HttpGet("{id}/showings")]
     public IActionResult GetShowingsByMovieId(int id)
     {
-        var instance = _entityFactory.Instantiate<MovieShowing>();
-        var res = instance.GetAll(id);
+        var res = _crudLogic.GetAll<MovieShowing>(id);
         return StatusCode(StatusCodes.Status200OK, res);
     }
     
     [HttpPost()]
     public IActionResult CreateMovie([FromBody] Movie movie)
     {
-        var instance = _entityFactory.Instantiate(movie);
-        var res = instance.Create();
+        var res = _crudLogic.Create(movie);
         return StatusCode(StatusCodes.Status200OK, res);
     }
     

@@ -18,6 +18,7 @@ builder.Services.AddDbContext<DbContext, AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext"));
 });
 
+builder.Services.AddScoped<ICrudLogic, CrudLogic>();
 builder.Services.AddScoped<IMovieLogic, MovieLogic>();
 builder.Services.AddScoped<IEntityFactory, EntityFactory>();
 
