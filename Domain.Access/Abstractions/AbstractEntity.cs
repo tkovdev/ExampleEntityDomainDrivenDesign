@@ -24,6 +24,7 @@ public abstract class AbstractEntity<T> : IEntity<T>
     public virtual T Get(int id) => throw new NotImplementedException();
     public virtual T Create() => throw new NotImplementedException();
     public virtual T Update() => throw new NotImplementedException();
+    public virtual T Delete(int id) => throw new NotImplementedException();
     public void AddCtx(DbContext ctx)
     {
         if (ctx is null) throw new FatalException("DbContext cannot be null when adding it to the Entity");

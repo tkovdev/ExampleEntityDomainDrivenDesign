@@ -9,5 +9,6 @@ public interface IEntity<T>
     public IList<T> GetAll(int id);
     public T Create();
     public T Update();
+    public T Delete(int id);
     public void AddCtx(DbContext ctx);
 }

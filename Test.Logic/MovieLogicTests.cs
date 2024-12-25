@@ -14,8 +14,9 @@ public class MovieLogicTests
     [TestMethod]
     public void CheckTicket_WhenValidTicket_ReturnTrue()
     {
-        var mockMovieTicket = new Mock<MovieTicket>();
-        var mockMovie = new Mock<Movie>();
+        var mockCtx = new Mock<AppDbContext>();
+        var mockMovieTicket = new Mock<MovieTicket>(mockCtx.Object);
+        var mockMovie = new Mock<Movie>(mockCtx.Object);
         var mockEntityFactory = new Mock<IEntityFactory>();
         
         mockMovieTicket.Object.ShowingTime = DateTime.Now.AddMinutes(100);

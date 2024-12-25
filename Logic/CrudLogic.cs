@@ -28,21 +28,27 @@ public class CrudLogic : ICrudLogic
 
     public IList<T> GetAll<T>(int id) where T : IEntity<T>
     {
-        throw new NotImplementedException();
+        var instance = _entityFactory.Instantiate<T>();
+        var res = instance.GetAll(id);
+        return res; 
     }
 
     public T Create<T>(T instance) where T : IEntity<T>
     {
-        throw new NotImplementedException();
+        var res = instance.Create();
+        return res;
     }
 
     public T Update<T>(T instance) where T : IEntity<T>
     {
-        throw new NotImplementedException();
+        var res = instance.Update();
+        return res;
     }
     
     public T Delete<T>(int id) where T : IEntity<T>
     {
-        throw new NotImplementedException();
+        var instance = _entityFactory.Instantiate<T>();
+        var res = instance.Delete(id);
+        return res;
     }
 }
