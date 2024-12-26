@@ -17,16 +17,23 @@ public class EntityFactory : IEntityFactory
     
     public T Instantiate<T>() where T : IEntity<T>
     {
-        var instance = (T?)Activator.CreateInstance(typeof(T), [_ctx]);
-        if (instance is null) throw new FatalException($"Could not setup instance of {typeof(T)}");
-        return instance;
+        try
+        {
+
+            var instance = Activator.CreateInstance<T>();
+            instance.AddCtx(_ctx);
+            return instance;
+        }
+        catch (System.Exception e)
+        {
+            throw new FatalException($"Cannot create instance of {typeof(T)}");
+        }
     }
 
     public T Instantiate<T>(T existingEntity) where T : IEntity<T>
     {
         var instance = existingEntity;
         existingEntity.AddCtx(_ctx);
-        if (instance is null) throw new FatalException($"Could not setup instance of {typeof(T)}");
         return instance;
     }
 }

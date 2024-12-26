@@ -27,9 +27,6 @@ public abstract class AbstractEntity<T> : IEntity<T>
     public virtual T Delete(int id) => throw new NotImplementedException();
     public void AddCtx(DbContext ctx)
     {
-        if (ctx is null) throw new FatalException("DbContext cannot be null when adding it to the Entity");
-        if(ctx.GetType() != typeof(AppDbContext)) throw new FatalException("DbContext must be of type AppDbContext");
-        
-        Ctx = (AppDbContext)ctx;
+        Ctx = (AppDbContext)ctx ?? throw new FatalException("DbContext cannot be null when adding it to the Entity");
     }
 }
