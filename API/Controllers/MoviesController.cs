@@ -17,6 +17,13 @@ public class MoviesController : ControllerBase
         _movieLogic = movieLogic;
     }
 
+    [HttpGet("test")]
+    public IActionResult QueryableTest()
+    {
+        var res = _movieLogic.QueryableTest();
+        return StatusCode(StatusCodes.Status200OK, res);
+    }
+    
     [HttpGet]
     public IActionResult GetMovieList()
     {
@@ -39,12 +46,12 @@ public class MoviesController : ControllerBase
         }
     }
     
-    [HttpGet("{id}/showings")]
-    public IActionResult GetShowingsByMovieId(int id)
-    {
-        var res = _crudLogic.GetAll<MovieShowing>(id);
-        return StatusCode(StatusCodes.Status200OK, res);
-    }
+    // [HttpGet("{id}/showings")]
+    // public IActionResult GetShowingsByMovieId(int id)
+    // {
+    //     var res = _crudLogic.GetAll<MovieShowing>(id);
+    //     return StatusCode(StatusCodes.Status200OK, res);
+    // }
     
     [HttpPost()]
     public IActionResult CreateMovie([FromBody] Movie movie)

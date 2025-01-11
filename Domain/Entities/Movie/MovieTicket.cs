@@ -22,8 +22,29 @@ public class MovieTicket : AbstractEntity<MovieTicket>
     public string Discount { get; set; } = String.Empty;
 
     
+    public MovieTicket() : base(){}
     public MovieTicket(AppDbContext ctx) : base(ctx){}
 
+    public override IQueryable<MovieTicket> AsQueryable()
+    {
+        var ticket = Ctx.Tickets
+            .Include(x => x.Showing.Movie)
+            .Include(x => x.Showing.Theater)
+            .Select(x => new MovieTicket(Ctx)
+            {
+                TheaterId = x.Showing.TheaterId,
+                MovieId = x.Showing.MovieId,
+                TicketId = x.Id,
+                PurchasedDate = x.PurchasedDate,
+                Price = x.Price,
+                MovieName = x.Showing.Movie.Title,
+                ShowingTime = x.Showing.StartTime,
+                TheaterName = x.Showing.Theater.Name,
+                Activated = x.Activated
+            });
+        return ticket;
+    }
+    
     public override MovieTicket Get(int ticketId)
     {
         var ticket = Ctx.Tickets

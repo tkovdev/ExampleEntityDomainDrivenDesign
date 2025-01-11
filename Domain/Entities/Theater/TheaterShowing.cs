@@ -12,6 +12,7 @@ public class TheaterShowing : AbstractEntity<TheaterShowing>
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     
+    public TheaterShowing() : base() { }
     public TheaterShowing(AppDbContext ctx) : base(ctx){}
 
     public override IList<TheaterShowing> GetAll(int id)

@@ -14,10 +14,24 @@ public class Movie : AbstractEntity<Movie>
     public UInt16 RunTime { get; set; }
     public int DirectorId { get; set; }
 
-    public Movie(AppDbContext ctx) : base(ctx)
-    {
-    }
+    public Movie() : base() { }
+    public Movie(AppDbContext ctx) : base(ctx) { }
 
+    public override IQueryable<Movie> AsQueryable()
+    {
+        var movies = Ctx.Movies
+            .Include(x => x.Director)
+            .Select(x => new Movie(Ctx)
+            {
+                Id = x.Id,
+                Title = x.Title,
+                RunTime = x.RunTime,
+                ReleaseDate = x.ReleaseDate,
+                DirectorId = x.Director.Id
+            });
+        return movies;
+    }
+    
     public override IList<Movie> Get()
     {
         var movie = Ctx.Movies

@@ -10,6 +10,7 @@ public class Theater : AbstractEntity<Theater>
     public string Name { get; set; }
     public int Capacity { get; set; }
     
+    public Theater() : base() { }
     public Theater(AppDbContext ctx) : base(ctx){}
 
     public override IList<Theater> Get()

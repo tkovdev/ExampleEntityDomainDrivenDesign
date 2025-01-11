@@ -4,6 +4,7 @@ namespace Domain.Access.Interfaces;
 
 public interface IEntity<T>
 {
+    public IQueryable<T> AsQueryable();
     public T Get(int id);
     public IList<T> Get();
     public IList<T> GetAll(int id);

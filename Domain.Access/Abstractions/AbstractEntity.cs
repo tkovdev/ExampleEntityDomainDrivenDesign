@@ -20,6 +20,7 @@ public abstract class AbstractEntity<T> : IEntity<T>
     }
     
     public virtual IList<T> GetAll(int id) => throw new NotImplementedException();
+    public virtual IQueryable<T> AsQueryable() => throw new NotImplementedException();
     public virtual IList<T> Get() => throw new NotImplementedException();
     public virtual T Get(int id) => throw new NotImplementedException();
     public virtual T Create() => throw new NotImplementedException();

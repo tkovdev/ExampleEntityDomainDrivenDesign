@@ -15,6 +15,17 @@ public class MovieLogic : IMovieLogic
         _entityFactory = entityFactory;
     }
 
+    public IList<Movie> QueryableTest()
+    {
+        var movieTicket = _entityFactory.Instantiate<Movie>();
+        var x = movieTicket.AsQueryable();
+
+        var found = x.Where(x => x.Title.Contains("a")).ToList();
+        if (found is null) throw new System.Exception();
+
+        return found;
+    }
+    
     public MovieTicket PurchaseTicket(int theaterId, int movieId, DateTime showingTime)
     {
         var theaterTickets = _entityFactory.Instantiate<TheaterTicket>();
