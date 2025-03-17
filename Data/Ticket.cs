@@ -7,6 +7,7 @@ public class Ticket
     public UInt16 Price { get; set; }
     
     public Showing Showing { get; set; }
+    public Seat Seat { get; set; }
     public bool Activated { get; set; } = false;
 
 }

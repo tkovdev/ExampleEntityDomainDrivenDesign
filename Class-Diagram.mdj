@@ -2339,6 +2339,23 @@
 										},
 										{
 											"_type": "UMLOperationView",
+											"_id": "AAAAAAGVKhlX6MqlBKY=",
+											"_parent": {
+												"$ref": "AAAAAAGSorYVXFbooL8="
+											},
+											"model": {
+												"$ref": "AAAAAAGVKhlXtMqiqZw="
+											},
+											"font": "Arial;13;0",
+											"left": 606,
+											"top": 926,
+											"width": 144.13623046875,
+											"height": 13,
+											"text": "+AsQueryable()",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
 											"_id": "AAAAAAGSqFTmBFwA920=",
 											"_parent": {
 												"$ref": "AAAAAAGSorYVXFbooL8="
@@ -2348,7 +2365,7 @@
 											},
 											"font": "Arial;13;2",
 											"left": 606,
-											"top": 926,
+											"top": 941,
 											"width": 144.13623046875,
 											"height": 13,
 											"text": "+AddCtx(ctx: DbContext)",
@@ -2359,7 +2376,7 @@
 									"left": 601,
 									"top": 846,
 									"width": 154.13623046875,
-									"height": 98
+									"height": 113
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2402,7 +2419,7 @@
 							"left": 601,
 							"top": 808,
 							"width": 154.13623046875,
-							"height": 136,
+							"height": 151,
 							"stereotypeDisplay": "decoration-label",
 							"nameCompartment": {
 								"$ref": "AAAAAAGSorYVXFbiOGQ="
@@ -2892,7 +2909,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 680,
-									"top": 967,
+									"top": 975,
 									"width": 49.4990234375,
 									"height": 13,
 									"alpha": -1.8244698981766687,
@@ -2915,7 +2932,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 647,
-									"top": 960,
+									"top": 968,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2936,7 +2953,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 691,
-									"top": 961,
+									"top": 969,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2954,7 +2971,7 @@
 								"$ref": "AAAAAAGSorbZn1dl7sw="
 							},
 							"lineStyle": 1,
-							"points": "677:991;677:944",
+							"points": "677:991;677:959",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGSorcHSleQ6dY="
@@ -11893,6 +11910,14 @@
 									},
 									"name": "Update",
 									"isAbstract": true
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGVKhlXtMqiqZw=",
+									"_parent": {
+										"$ref": "AAAAAAGSorYVW1bf0QM="
+									},
+									"name": "AsQueryable"
 								},
 								{
 									"_type": "UMLOperation",
