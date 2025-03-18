@@ -14,6 +14,8 @@ public class MovieTicket : AbstractEntity<MovieTicket>
     public DateTime ShowingTime { get; set; }
 
     public int TicketId { get; set; } = 0;
+    public char SeatRow { get; set; } = 'A';
+    public int SeatNumber { get; set; } = 1;
     public DateTime PurchasedDate { get; set; } = DateTime.MinValue;
     public UInt16 Price { get; set; } = UInt16.MinValue;
     public string TheaterName { get; set; } = String.Empty;
@@ -40,7 +42,9 @@ public class MovieTicket : AbstractEntity<MovieTicket>
                 MovieName = x.Showing.Movie.Title,
                 ShowingTime = x.Showing.StartTime,
                 TheaterName = x.Showing.Theater.Name,
-                Activated = x.Activated
+                Activated = x.Activated,
+                SeatRow = x.Seat.Row,
+                SeatNumber = x.Seat.Number
             });
         return ticket;
     }
@@ -61,7 +65,9 @@ public class MovieTicket : AbstractEntity<MovieTicket>
                 MovieName = x.Showing.Movie.Title,
                 ShowingTime = x.Showing.StartTime,
                 TheaterName = x.Showing.Theater.Name,
-                Activated = x.Activated
+                Activated = x.Activated,
+                SeatRow = x.Seat.Row,
+                SeatNumber = x.Seat.Number
             }).FirstOrDefault();
         if (ticket is null) throw new WarningException("Ticket not found!");
         return ticket;
@@ -75,11 +81,12 @@ public class MovieTicket : AbstractEntity<MovieTicket>
             .FirstOrDefault(x => x.TheaterId == TheaterId && x.MovieId == MovieId && x.StartTime == ShowingTime);
         if (showing is null) throw new CriticalException("Showing does not exist for given movie, theater &/or time");
         
-        var create = new Ticket()
+        var create = new Data.Ticket()
         {
             Price = Price,
             PurchasedDate = PurchasedDate,
-            Showing = showing
+            Showing = showing,
+            Seat = new Seat(){Row = SeatRow, Number = SeatNumber}
         };
         Ctx.Tickets.Add(create);
         Ctx.SaveChanges();
